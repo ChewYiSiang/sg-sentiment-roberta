@@ -210,5 +210,11 @@ wandb.log({
     "test/f1_weighted": f1_score(labels, preds, average="weighted"),
 })
 
+# Save final LoRA adapter explicitly to a stable path
+adapter_save_path = os.path.join(OUTPUT_DIR, "final_adapter")
+model.save_pretrained(adapter_save_path)
+tokenizer.save_pretrained(adapter_save_path)
+print(f"Adapter saved to {adapter_save_path}")
+
 wandb.finish()
 print(f"\nTraining complete. Model saved to {OUTPUT_DIR}")
