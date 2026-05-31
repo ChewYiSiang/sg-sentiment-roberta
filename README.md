@@ -10,10 +10,15 @@ This project fine-tunes a transformer on locally scraped Singaporean forum text
 generalisation on Singlish and local language patterns.
 
 ## Results
-| Model | Accuracy | F1 | Params trained |
-|---|---|---|---|
-| TF-IDF baseline | 89% | - | - |
-| Fine-tuned RoBERTa (ours) | TBD | TBD | TBD |
+
+| Model | Accuracy | F1 Macro | Params trained | Notes |
+|---|---|---|---|---|
+| TF-IDF + Logistic Regression (baseline) | 0.89* | - | - | Lazada reviews, binary classification |
+| QLoRA RoBERTa r=16, lr=2e-4 | 0.768 | 0.770 | 2.96M | Run 1 |
+| QLoRA RoBERTa r=8, lr=2e-4 | 0.766 | 0.768 | 1.48M | Run 2 |
+| QLoRA RoBERTa r=8, lr=5e-4 | **0.774** | **0.776** | **1.48M** | Run 3 — best |
+
+*Baseline is not directly comparable — different dataset and binary vs 3-class task
 
 ## Architecture
 (diagram to be added in Phase 5)

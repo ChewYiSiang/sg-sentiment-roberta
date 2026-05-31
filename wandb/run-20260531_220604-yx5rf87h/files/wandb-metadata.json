@@ -1,0 +1,40 @@
+{
+  "os": "Windows-11-10.0.26200-SP0",
+  "python": "CPython 3.13.7",
+  "startedAt": "2026-05-31T14:06:04.620490Z",
+  "program": "C:\\Users\\alsto\\Documents\\Personal\\Personal Projects\\sg-sentiment-roberta\\training\\train.py",
+  "codePath": "training\\train.py",
+  "codePathLocal": "training\\train.py",
+  "git": {
+    "remote": "https://github.com/ChewYiSiang/sg-sentiment-roberta.git",
+    "commit": "5304f89e866e8d810ff5a23e79f69b266cf88771"
+  },
+  "email": "chewyisiang123@gmail.com",
+  "root": "C:\\Users\\alsto\\Documents\\Personal\\Personal Projects\\sg-sentiment-roberta",
+  "host": "YS-Laptop",
+  "executable": "C:\\Users\\alsto\\Documents\\Personal\\Personal Projects\\sg-sentiment-roberta\\venv\\Scripts\\python.exe",
+  "cpu_count": 8,
+  "cpu_count_logical": 16,
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "gpu_count": 1,
+  "disk": {
+    "/": {
+      "total": "1021821579264",
+      "used": "409639301120"
+    }
+  },
+  "memory": {
+    "total": "16308531200"
+  },
+  "gpu_nvidia": [
+    {
+      "name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+      "memoryTotal": "8585740288",
+      "cudaCores": 3072,
+      "architecture": "Ada",
+      "uuid": "GPU-a1cfa9a8-ce7f-9c17-12bb-169afc94bcc9"
+    }
+  ],
+  "cudaVersion": "13.2",
+  "writerId": "uv9f57bt6skk1xqq7bnmmy6h0u7jja4w"
+}

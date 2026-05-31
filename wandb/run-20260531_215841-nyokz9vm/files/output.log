@@ -1,0 +1,73 @@
+Starting training...
+  0%|                                                                                                                                                                                       | 0/2052 [00:00<?, ?it/s][transformers] `use_return_dict` is deprecated! Use `return_dict` instead!
+C:\Users\alsto\Documents\Personal\Personal Projects\sg-sentiment-roberta\venv\Lib\site-packages\torch\_dynamo\eval_frame.py:745: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+ 33%|█████████████████████████████████████████████████████████▋                                                                                                                   | 684/2052 [01:40<02:29,  9.16it/s]C:\Users\alsto\Documents\Personal\Personal Projects\sg-sentiment-roberta\venv\Lib\site-packages\torch\_dynamo\eval_frame.py:745: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+{'loss': '1.072', 'grad_norm': '0.7238', 'learning_rate': '0.0001225', 'epoch': '0.0731'}
+{'loss': '0.9339', 'grad_norm': '0.6172', 'learning_rate': '0.0002475', 'epoch': '0.1462'}
+{'loss': '0.8828', 'grad_norm': '0.9663', 'learning_rate': '0.0003725', 'epoch': '0.2193'}
+{'loss': '0.8288', 'grad_norm': '0.7543', 'learning_rate': '0.0004975', 'epoch': '0.2924'}
+{'loss': '0.7708', 'grad_norm': '1.848', 'learning_rate': '0.0004868', 'epoch': '0.3655'}
+{'loss': '0.7282', 'grad_norm': '1.613', 'learning_rate': '0.0004733', 'epoch': '0.4386'}
+{'loss': '0.7299', 'grad_norm': '1.111', 'learning_rate': '0.0004598', 'epoch': '0.5117'}
+{'loss': '0.6966', 'grad_norm': '1.117', 'learning_rate': '0.0004463', 'epoch': '0.5848'}
+{'loss': '0.6962', 'grad_norm': '0.8297', 'learning_rate': '0.0004328', 'epoch': '0.6579'}
+{'loss': '0.7103', 'grad_norm': '0.7175', 'learning_rate': '0.0004195', 'epoch': '0.731'}
+{'loss': '0.6937', 'grad_norm': '0.7365', 'learning_rate': '0.000406', 'epoch': '0.8041'}
+{'loss': '0.6814', 'grad_norm': '1.032', 'learning_rate': '0.0003925', 'epoch': '0.8772'}
+{'loss': '0.684', 'grad_norm': '1.108', 'learning_rate': '0.000379', 'epoch': '0.9503'}
+  return fn(*args, **kwargs)                                                                                                                                                                                         
+{'eval_loss': '0.6645', 'eval_accuracy': '0.7462', 'eval_f1_macro': '0.7469', 'eval_f1_weighted': '0.7404', 'eval_runtime': '4.374', 'eval_samples_per_second': '625', 'eval_steps_per_second': '9.83', 'epoch': '1'}
+ 67%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████▋                                                         | 1368/2052 [03:21<01:25,  8.03it/s]C:\Users\alsto\Documents\Personal\Personal Projects\sg-sentiment-roberta\venv\Lib\site-packages\torch\_dynamo\eval_frame.py:745: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+{'loss': '0.686', 'grad_norm': '1.578', 'learning_rate': '0.0003656', 'epoch': '1.023'}
+{'loss': '0.6688', 'grad_norm': '1.249', 'learning_rate': '0.0003521', 'epoch': '1.096'}
+{'loss': '0.66', 'grad_norm': '0.7144', 'learning_rate': '0.0003386', 'epoch': '1.17'}
+{'loss': '0.6556', 'grad_norm': '2.277', 'learning_rate': '0.0003251', 'epoch': '1.243'}
+{'loss': '0.6684', 'grad_norm': '1.13', 'learning_rate': '0.0003116', 'epoch': '1.316'}
+{'loss': '0.662', 'grad_norm': '1.107', 'learning_rate': '0.0002981', 'epoch': '1.389'}
+{'loss': '0.6487', 'grad_norm': '1.383', 'learning_rate': '0.0002846', 'epoch': '1.462'}
+{'loss': '0.6467', 'grad_norm': '0.8844', 'learning_rate': '0.0002711', 'epoch': '1.535'}
+{'loss': '0.6529', 'grad_norm': '2.08', 'learning_rate': '0.0002576', 'epoch': '1.608'}
+{'loss': '0.6486', 'grad_norm': '1.529', 'learning_rate': '0.0002441', 'epoch': '1.681'}
+{'loss': '0.6582', 'grad_norm': '1.299', 'learning_rate': '0.0002306', 'epoch': '1.754'}
+{'loss': '0.6518', 'grad_norm': '0.9867', 'learning_rate': '0.0002171', 'epoch': '1.827'}
+{'loss': '0.6491', 'grad_norm': '1.045', 'learning_rate': '0.0002036', 'epoch': '1.901'}
+{'loss': '0.6491', 'grad_norm': '0.8122', 'learning_rate': '0.0001901', 'epoch': '1.974'}
+  return fn(*args, **kwargs)                                                                                                                                                                                         
+{'eval_loss': '0.6308', 'eval_accuracy': '0.7747', 'eval_f1_macro': '0.776', 'eval_f1_weighted': '0.7713', 'eval_runtime': '4.36', 'eval_samples_per_second': '627', 'eval_steps_per_second': '9.862', 'epoch': '2'}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2052/2052 [05:03<00:00,  6.77it/s]
+{'loss': '0.6449', 'grad_norm': '0.9814', 'learning_rate': '0.0001766', 'epoch': '2.047'}
+{'loss': '0.6361', 'grad_norm': '2.152', 'learning_rate': '0.0001631', 'epoch': '2.12'}
+{'loss': '0.632', 'grad_norm': '1.324', 'learning_rate': '0.0001496', 'epoch': '2.193'}
+{'loss': '0.6128', 'grad_norm': '1.721', 'learning_rate': '0.0001361', 'epoch': '2.266'}
+{'loss': '0.6337', 'grad_norm': '2.252', 'learning_rate': '0.0001226', 'epoch': '2.339'}
+{'loss': '0.6214', 'grad_norm': '0.9565', 'learning_rate': '0.0001091', 'epoch': '2.412'}
+{'loss': '0.5927', 'grad_norm': '1.012', 'learning_rate': '9.557e-05', 'epoch': '2.485'}
+{'loss': '0.6212', 'grad_norm': '1.846', 'learning_rate': '8.207e-05', 'epoch': '2.558'}
+{'loss': '0.6394', 'grad_norm': '1.119', 'learning_rate': '6.857e-05', 'epoch': '2.632'}
+{'loss': '0.6175', 'grad_norm': '0.8778', 'learning_rate': '5.508e-05', 'epoch': '2.705'}
+{'loss': '0.6294', 'grad_norm': '0.8937', 'learning_rate': '4.158e-05', 'epoch': '2.778'}
+{'loss': '0.6298', 'grad_norm': '1.159', 'learning_rate': '2.808e-05', 'epoch': '2.851'}
+{'loss': '0.6228', 'grad_norm': '1.367', 'learning_rate': '1.458e-05', 'epoch': '2.924'}
+{'loss': '0.6246', 'grad_norm': '0.9996', 'learning_rate': '1.08e-06', 'epoch': '2.997'}
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 43/43 [00:04<00:00, 10.14it/s]
+{'eval_loss': '0.6211', 'eval_accuracy': '0.7835', 'eval_f1_macro': '0.786', 'eval_f1_weighted': '0.7818', 'eval_runtime': '4.405', 'eval_samples_per_second': '620.7', 'eval_steps_per_second': '9.763', 'epoch': '3'}
+{'train_runtime': '303.1', 'train_samples_per_second': '216.5', 'train_steps_per_second': '6.769', 'train_loss': '0.6846', 'epoch': '3'}
+
+Evaluating on test set...
+
+=== Test Set Results ===
+Accuracy:    0.7831
+F1 Macro:    0.7855
+F1 Weighted: 0.7808
+
+Per-class breakdown:
+              precision    recall  f1-score   support
+
+    negative       0.76      0.84      0.80       858
+     neutral       0.77      0.67      0.72      1036
+    positive       0.81      0.86      0.84       840
+
+    accuracy                           0.78      2734
+   macro avg       0.78      0.79      0.79      2734
+weighted avg       0.78      0.78      0.78      2734
