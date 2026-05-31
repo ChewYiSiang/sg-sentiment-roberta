@@ -1,0 +1,66 @@
+_wandb:
+    value:
+        cli_version: 0.27.0
+        e:
+            jo6mlh8ll4kktkk1nsdkokpiuoqxc2mc:
+                codePath: training\train.py
+                codePathLocal: training\train.py
+                email: chewyisiang123@gmail.com
+                executable: C:\Users\alsto\Documents\Personal\Personal Projects\sg-sentiment-roberta\venv\Scripts\python.exe
+                git:
+                    commit: 93abafdc13ecc527512fc0f6f8aef2fcc60bd368
+                    remote: https://github.com/ChewYiSiang/sg-sentiment-roberta.git
+                host: YS-Laptop
+                os: Windows-11-10.0.26200-SP0
+                program: C:\Users\alsto\Documents\Personal\Personal Projects\sg-sentiment-roberta\training\train.py
+                python: CPython 3.13.7
+                root: C:\Users\alsto\Documents\Personal\Personal Projects\sg-sentiment-roberta
+                startedAt: "2026-05-31T13:34:59.227638Z"
+                writerId: jo6mlh8ll4kktkk1nsdkokpiuoqxc2mc
+        m: []
+        python_version: 3.13.7
+        t:
+            "1":
+                - 1
+                - 5
+                - 11
+                - 41
+                - 49
+                - 51
+                - 53
+                - 71
+                - 98
+            "2":
+                - 1
+                - 5
+                - 11
+                - 41
+                - 49
+                - 51
+                - 53
+                - 71
+                - 98
+            "3":
+                - 13
+                - 16
+            "4": 3.13.7
+            "5": 0.27.0
+            "6": 5.9.0
+            "8":
+                - 3
+            "12": 0.27.0
+            "13": windows-amd64
+batch_size:
+    value: 32
+epochs:
+    value: 3
+learning_rate:
+    value: 0.0002
+lora_alpha:
+    value: 32
+lora_r:
+    value: 16
+model:
+    value: cardiffnlp/twitter-roberta-base-sentiment-latest
+quantisation:
+    value: 4bit-nf4

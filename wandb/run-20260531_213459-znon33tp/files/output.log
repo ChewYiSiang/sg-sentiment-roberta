@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\alsto\Documents\Personal\Personal Projects\sg-sentiment-roberta\training\train.py", line 180, in <module>
+    trainer = WeightedTrainer(
+        model=model,
+    ...<5 lines>...
+        compute_metrics=compute_metrics,
+    )
+TypeError: Trainer.__init__() got an unexpected keyword argument 'tokenizer'

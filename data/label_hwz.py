@@ -28,11 +28,11 @@ def classify_sentiment(text: str) -> str:
         print(f"  Error: {e}")
         return "neutral"
 
-# ── Load data ──────────────────────────────────────────────────────────────────
+# === Load data ===
 df = pd.read_csv("data/raw_hwz.csv")
 print(f"Total rows to label: {len(df)}")
 
-# ── Checkpoint logic ───────────────────────────────────────────────────────────
+# === Checkpoint logic ===
 checkpoint_path = "data/hwz_checkpoint.csv"
 start_idx = 0
 
@@ -45,7 +45,7 @@ else:
     labels = []
     print("No checkpoint found — starting from index 0")
 
-# ── Label loop ─────────────────────────────────────────────────────────────────
+# === Label loop ===
 for i, text in enumerate(df["text"]):
     if i < start_idx:
         continue
@@ -62,7 +62,7 @@ for i, text in enumerate(df["text"]):
         checkpoint["label"] = labels
         checkpoint.to_csv(checkpoint_path, index=False)
 
-# ── Save final output ──────────────────────────────────────────────────────────
+# === Save final output ===
 df["label"] = labels
 df.to_csv("data/labelled_hwz.csv", index=False)
 
