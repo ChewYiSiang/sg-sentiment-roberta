@@ -1,10 +1,8 @@
 import gradio as gr
 import torch
-from transformers import AutoTokenizer, AutoModelForSequenceClassification, BitsAndBytesConfig
-from peft import PeftModel
+from transformers import AutoTokenizer, AutoModelForSequenceClassification
 
-MODEL_NAME = "cardiffnlp/twitter-roberta-base-sentiment-latest"
-ADAPTER_REPO = "ChewYiSiang/sg-sentiment-roberta"  # your HuggingFace repo
+HF_REPO = "Yi-Siang/sg-sentiment-roberta"
 
 ID2LABEL = {0: "negative", 1: "neutral", 2: "positive"}
 LABEL_EMOJI = {
@@ -13,36 +11,19 @@ LABEL_EMOJI = {
     "neutral":  "😐 Neutral"
 }
 
-print("Loading model...")
+print("Loading merged model...")
 
-# On Spaces we may not have a GPU — handle both cases
-device = "cuda" if torch.cuda.is_available() else "cpu"
-
-if device == "cuda":
-    bnb_config = BitsAndBytesConfig(
-        load_in_4bit=True,
-        bnb_4bit_use_double_quant=True,
-        bnb_4bit_quant_type="nf4",
-        bnb_4bit_compute_dtype=torch.bfloat16
-    )
-    base_model = AutoModelForSequenceClassification.from_pretrained(
-        MODEL_NAME,
-        num_labels=3,
-        quantization_config=bnb_config,
-        device_map="auto",
-    )
-    for param in base_model.classifier.parameters():
-        param.data = param.data.to(dtype=torch.float32, device="cuda")
-else:
-    # CPU fallback — no quantisation, slower but works anywhere
-    base_model = AutoModelForSequenceClassification.from_pretrained(
-        MODEL_NAME,
-        num_labels=3,
-    )
-
-tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
-model = PeftModel.from_pretrained(base_model, ADAPTER_REPO)
+# Load merged float32 model — no bitsandbytes or PEFT needed
+# Works on CPU or GPU transparently
+model = AutoModelForSequenceClassification.from_pretrained(
+    HF_REPO,
+    num_labels=3,
+)
+tokenizer = AutoTokenizer.from_pretrained(HF_REPO)
 model.eval()
+
+device = "cuda" if torch.cuda.is_available() else "cpu"
+model = model.to(device)
 print(f"Model loaded on {device}")
 
 
@@ -53,8 +34,7 @@ def predict(text: str) -> dict:
         truncation=True,
         max_length=128,
     )
-    if device == "cuda":
-        inputs = {k: v.cuda() for k, v in inputs.items()}
+    inputs = {k: v.to(device) for k, v in inputs.items()}
 
     with torch.no_grad():
         outputs = model(**inputs)

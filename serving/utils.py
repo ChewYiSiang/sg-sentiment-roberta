@@ -5,7 +5,7 @@ from peft import PeftModel
 
 MODEL_NAME = "cardiffnlp/twitter-roberta-base-sentiment-latest"
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-ADAPTER_PATH = os.path.join(BASE_DIR, "..", "training", "output", "final_adapter")
+ADAPTER_PATH = os.path.join(BASE_DIR, "..", "training", "output", "final_adapter_v2")
 
 ID2LABEL = {0: "negative", 1: "neutral", 2: "positive"}
 LABEL2ID = {"negative": 0, "neutral": 1, "positive": 2}
@@ -33,16 +33,6 @@ def load_model_and_tokenizer():
     )
 
     # Classifier head must be float32 — 4-bit tensors cannot hold gradients
-    device = next(
-        (p.device for p in base_model.parameters() if p.dtype == torch.float32),
-        torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    )
-    for param in base_model.classifier.parameters():
-        param.data = param.data.to(dtype=torch.float32, device=device)
-
-    if hasattr(base_model, "roberta") and base_model.roberta.pooler is not None:
-        for param in base_model.roberta.pooler.parameters():
-            param.data = param.data.to(dtype=torch.float32, device=device)
 
     model = PeftModel.from_pretrained(base_model, ADAPTER_PATH)
     model.eval()

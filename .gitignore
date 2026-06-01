@@ -5,5 +5,10 @@ __pycache__/
 data/raw_*.csv
 data/labelled*.csv
 data/*_checkpoint.csv
+data/sg_sentiment_dataset/
+training/output/
+wandb/
 *.egg-info/
 .DS_Store
+*.safetensors
+*.bin

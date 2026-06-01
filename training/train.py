@@ -46,9 +46,10 @@ print(f"Class weights: {class_weights}")
 # 4-bit quantisation — reduces VRAM usage by ~4x, enabling fine-tuning on 8GB GPU
 bnb_config = BitsAndBytesConfig(
     load_in_4bit=True,
-    bnb_4bit_use_double_quant=True,        # nested quantisation saves extra memory
-    bnb_4bit_quant_type="nf4",             # NormalFloat4 - best for normally distributed weights
-    bnb_4bit_compute_dtype=torch.bfloat16  # compute in bfloat16 for stability
+    bnb_4bit_use_double_quant=True,
+    bnb_4bit_quant_type="nf4",
+    bnb_4bit_compute_dtype=torch.bfloat16,
+    llm_int8_skip_modules=["classifier"]  # keep classifier in float32
 )
 
 # === LoRA config ===
@@ -78,16 +79,6 @@ model = AutoModelForSequenceClassification.from_pretrained(
     quantization_config=bnb_config,
     device_map="auto",
 )
-
-# === Fix: cast classifier head to float32 ===
-# 4-bit tensors cannot hold gradients — classifier head must stay in float32
-for param in model.classifier.parameters():
-    param.data = param.data.to(torch.float32)
-
-# Only cast pooler if it exists and is not None
-if hasattr(model, "roberta") and model.roberta.pooler is not None:
-    for param in model.roberta.pooler.parameters():
-        param.data = param.data.to(torch.float32)
 
 # === Prepare for k-bit training ===
 model = prepare_model_for_kbit_training(model)
@@ -164,7 +155,7 @@ training_args = TrainingArguments(
 # === Initialise W&B run ===
 wandb.init(
     project="sg-sentiment-roberta",
-    name="qlora-r8-lr5e4-run3",
+    name="qlora-r8-lr5e4-run4-clean",
     config={
         "model": MODEL_NAME,
         "lora_r": 8,
@@ -216,5 +207,21 @@ model.save_pretrained(adapter_save_path)
 tokenizer.save_pretrained(adapter_save_path)
 print(f"Adapter saved to {adapter_save_path}")
 
+# ── Save adapter properly in float32 ──────────────────────────────────────────
+# Cast classifier back to float32 explicitly before saving
+# This ensures the saved weights have correct shapes for CPU loading
+print("Saving final adapter...")
+adapter_save_path = os.path.join(OUTPUT_DIR, "final_adapter_v2")
+os.makedirs(adapter_save_path, exist_ok=True)
+
+# Unwrap and save only the LoRA adapter weights
+# Force classifier weights to correct shape before saving
+for name, param in model.named_parameters():
+    if "classifier" in name:
+        param.data = param.data.to(dtype=torch.float32).contiguous()
+
+model.save_pretrained(adapter_save_path)
+tokenizer.save_pretrained(adapter_save_path)
+print(f"Adapter saved to {adapter_save_path}")
 wandb.finish()
 print(f"\nTraining complete. Model saved to {OUTPUT_DIR}")

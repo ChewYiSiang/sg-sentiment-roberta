@@ -10,7 +10,7 @@ from peft import PeftModel
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 MODEL_NAME = "cardiffnlp/twitter-roberta-base-sentiment-latest"
-ADAPTER_PATH = os.path.join(BASE_DIR, "..", "training", "output", "final_adapter")
+ADAPTER_PATH = os.path.join(BASE_DIR, "..", "training", "output", "final_adapter_v2")
 ID2LABEL = {0: "negative", 1: "neutral", 2: "positive"}
 
 # Inference tests verify the deployed model behaves correctly end to end,
@@ -36,14 +36,6 @@ def model_and_tokenizer():
         device_map="auto",
     )
 
-    # Cast classifier head to float32 but keep on GPU
-    device = next(base_model.parameters()).device
-    for param in base_model.classifier.parameters():
-        param.data = param.data.to(dtype=torch.float32, device=device)
-
-    if hasattr(base_model, "roberta") and base_model.roberta.pooler is not None:
-        for param in base_model.roberta.pooler.parameters():
-            param.data = param.data.to(dtype=torch.float32, device=device)
 
     model = PeftModel.from_pretrained(base_model, ADAPTER_PATH)
     model.eval()
