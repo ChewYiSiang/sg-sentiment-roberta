@@ -22,8 +22,13 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pytest pandas datasets scikit-learn transformers
+          pip install pytest pandas datasets scikit-learn transformers torch --index-url https://download.pytorch.org/whl/cpu
 
-      - name: Run data and preprocessing tests only
-        run: |
-          pytest tests/test_data.py tests/test_preprocess.py -v
+      - name: Generate HuggingFace data
+        run: python data/scrape_huggingface.py
+
+      - name: Run tokenizer tests
+        run: pytest tests/test_preprocess.py -v
+
+      - name: Run data tests
+        run: pytest tests/test_data.py::TestHuggingFaceData -v

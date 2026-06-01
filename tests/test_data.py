@@ -59,6 +59,12 @@ class TestHuggingFaceData:
 
 # ── Tests for build_dataset.py output ─────────────────────────────────────────
 class TestBuiltDataset:
+    """
+    Tests for the built HuggingFace DatasetDict.
+    Requires running the full data pipeline locally first:
+        python data/build_dataset.py
+    Not run in CI : dataset files are not committed to the repo.
+    """
     def setup_method(self):
         from datasets import load_from_disk
         data_dir = os.path.join(os.path.dirname(__file__), "..", "data")

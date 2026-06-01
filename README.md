@@ -18,13 +18,10 @@ generalisation on Singlish and local language patterns.
 
 | Model | Accuracy | F1 Macro | Params trained | Notes |
 |---|---|---|---|---|
-| TF-IDF baseline | 0.89* | - | - | Lazada reviews, binary classification |
 | QLoRA RoBERTa r=16, lr=2e-4 | 0.768 | 0.770 | 2.96M | Run 1 |
 | QLoRA RoBERTa r=8, lr=2e-4 | 0.766 | 0.768 | 1.48M | Run 2 |
 | QLoRA RoBERTa r=8, lr=5e-4 | 0.774 | 0.776 | 1.48M | Run 3 |
 | QLoRA RoBERTa r=8, lr=5e-4 (fixed classifier) | **0.782** | **0.784** | **1.48M** | Run 4 — best |
-
-*Baseline is not directly comparable — different dataset and binary vs 3-class task
 
 ## Architecture
 
