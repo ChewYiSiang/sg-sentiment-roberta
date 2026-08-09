@@ -2,14 +2,36 @@
 venv/
 __pycache__/
 *.pyc
+*.egg-info/
+.DS_Store
+
+# raw and intermediate data (regenerate via data/ pipeline)
 data/raw_*.csv
 data/labelled*.csv
 data/*_checkpoint.csv
 data/sg_sentiment_dataset/
-training/output/
+
+# experiment tracking (runs live in W&B, not in git)
 wandb/
-*.egg-info/
-.DS_Store
+
+# gradio local cache
+.gradio/
+
+# large binaries by default
 *.safetensors
 *.bin
+*.pt
+*.pth
 
+# Training output: ignore everything except the final adapter's inference
+# files, which serving/Dockerfile copies into the image. Order matters here,
+# the negations must come after the broad patterns above to win.
+training/output/*
+!training/output/final_adapter/
+training/output/final_adapter/*
+!training/output/final_adapter/adapter_config.json
+!training/output/final_adapter/adapter_model.safetensors
+!training/output/final_adapter/tokenizer.json
+!training/output/final_adapter/tokenizer_config.json
+!training/output/final_adapter/trainer_state.json
+!training/output/final_adapter/README.md

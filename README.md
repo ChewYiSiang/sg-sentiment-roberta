@@ -47,8 +47,8 @@ Gradio demo → HuggingFace Spaces (live public URL)
 - **Fine-tuning:** HuggingFace Transformers, PEFT, QLoRA, bitsandbytes
 - **Experiment tracking:** Weights & Biases
 - **Serving:** FastAPI, uvicorn, Docker, docker-compose
-- **CI/CD:** GitHub Actions (runs 20 tests on every push)
-- **Data:** HuggingFace datasets, Hardwarezone (scraped), Gemma2:2b labeller
+- **CI/CD:** GitHub Actions (runs the tokenizer and HuggingFace data tests on every push; inference tests run locally, since CI has no GPU)
+- **Data:** `mteb/tweet_sentiment_extraction`, Hardwarezone (scraped), Gemma2:2b labeller via Ollama
 - **Testing:** pytest (30 tests across data pipeline, preprocessing, inference)
 - **Demo:** Gradio on HuggingFace Spaces
 
@@ -63,10 +63,10 @@ pip install -r requirements.txt
 
 ## Reproducing the data pipeline
 ```bash
-python data/scrape_huggingface.py   # pull public tweet sentiment dataset
+python data/scrape_huggingface.py   # pull mteb/tweet_sentiment_extraction
 python data/scrape_hwz.py           # scrape Hardwarezone forum posts
-python data/label.py                # label HWZ posts with Gemma2:2b
-python data/build_dataset.py        # merge, split and save dataset
+python data/label_hwz.py            # label HWZ posts with Gemma2:2b (needs Ollama running)
+python data/build_dataset.py        # merge, stratified split, save
 ```
 
 ## Running the API locally
@@ -89,9 +89,9 @@ sg-sentiment-roberta/
 │       ├── test.yml              # runs pytest on every push
 │       └── docker-publish.yml    # builds and pushes Docker image on release tag
 ├── data/
-│   ├── scrape_huggingface.py     # pull public sentiment dataset
+│   ├── scrape_huggingface.py     # pull mteb/tweet_sentiment_extraction
 │   ├── scrape_hwz.py             # scrape Hardwarezone forum posts
-│   ├── label.py                  # label with Gemma2:2b local LLM
+│   ├── label_hwz.py              # label with Gemma2:2b via Ollama
 │   └── build_dataset.py          # merge, stratified split, save
 ├── training/
 │   ├── train.py                  # QLoRA fine-tuning with W&B tracking
@@ -104,11 +104,12 @@ sg-sentiment-roberta/
 │   ├── app_spaces.py             # Gradio demo (HuggingFace Spaces)
 │   └── Dockerfile                # containerised inference server
 ├── tests/
-│   ├── test_data.py              # 11 data pipeline tests
-│   ├── test_preprocess.py        # 9 tokenizer and preprocessing tests
+│   ├── test_data.py              # 13 data pipeline tests
+│   ├── test_preprocess.py        # 7 tokenizer and preprocessing tests
 │   └── test_inference.py         # 10 end-to-end inference tests
 ├── docker-compose.yml
-├── requirements.txt
+├── requirements.txt              # serving only (FastAPI inference)
+├── requirements-train.txt        # data pipeline, training, testing
 ├── model_card.md
 └── README.md
 ```

@@ -1,0 +1,23 @@
+# Data pipeline, QLoRA training, tests, and the local Gradio demo.
+# Install on top of requirements.txt:  pip install -r requirements.txt -r requirements-train.txt
+
+# data pipeline
+datasets==4.8.5
+pandas==3.0.3
+numpy==2.4.6
+scikit-learn==1.8.0
+beautifulsoup4==4.14.3
+requests==2.34.2
+ollama==0.6.2          # Gemma2:2b labeller, requires a local Ollama server
+
+# training
+accelerate==1.13.0
+wandb==0.27.0
+huggingface_hub==1.17.0
+safetensors==0.7.0
+
+# demo
+gradio==6.15.2
+
+# tests
+pytest==9.0.3
