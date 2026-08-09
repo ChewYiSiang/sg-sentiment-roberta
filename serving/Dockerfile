@@ -16,7 +16,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application code
 COPY serving/ ./serving/
-COPY training/output/final_adapter ./training/output/final_adapter
+COPY training/output/final_adapter_v2 ./training/output/final_adapter_v2
 
 # Expose port
 EXPOSE 8000
