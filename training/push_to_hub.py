@@ -5,7 +5,7 @@ from transformers import AutoTokenizer
 from peft import PeftModel, AutoPeftModelForSequenceClassification
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-ADAPTER_PATH = os.path.join(BASE_DIR, "output", "final_adapter")
+ADAPTER_PATH = os.path.join(BASE_DIR, "output", "final_adapter_v2")
 HF_REPO = "Yi-Siang/sg-sentiment-roberta"
 
 print(f"Pushing adapter to {HF_REPO}...")

@@ -23,15 +23,14 @@ wandb/
 *.pt
 *.pth
 
-# Training output: ignore everything except the final adapter's inference
-# files, which serving/Dockerfile copies into the image. Order matters here,
-# the negations must come after the broad patterns above to win.
+# Training output: ignore everything except final_adapter_v2's inference
+# files. That is the adapter serving/utils.py loads and Dockerfile copies.
+# Order matters here, negations must follow the broad patterns above to win.
 training/output/*
-!training/output/final_adapter/
-training/output/final_adapter/*
-!training/output/final_adapter/adapter_config.json
-!training/output/final_adapter/adapter_model.safetensors
-!training/output/final_adapter/tokenizer.json
-!training/output/final_adapter/tokenizer_config.json
-!training/output/final_adapter/trainer_state.json
-!training/output/final_adapter/README.md
+!training/output/final_adapter_v2/
+training/output/final_adapter_v2/*
+!training/output/final_adapter_v2/adapter_config.json
+!training/output/final_adapter_v2/adapter_model.safetensors
+!training/output/final_adapter_v2/tokenizer.json
+!training/output/final_adapter_v2/tokenizer_config.json
+!training/output/final_adapter_v2/README.md
